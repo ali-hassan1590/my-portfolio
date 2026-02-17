@@ -131,29 +131,52 @@ body {
   .mobile-toggle.active span:nth-child(2) { opacity: 0; }
   .mobile-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-  /* Mobile Dropdown Menu */
-  .mobile-menu-dropdown {
-    position: absolute;
-    top: 70px; /* Right below Navbar */
-    left: 0;
-    width: 100%;
-    background: var(--surface);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 3rem 0;
-    list-style: none;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
+  /* --- Updated Mobile Dropdown Menu --- */
+.mobile-menu-dropdown {
+  position: absolute;
+  top: 70px; 
+  left: 0;
+  width: 100%;
+  background: var(--surface); /* Matches your dark background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 3rem 0;
+  list-style: none;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+  z-index: 1000;
+}
 
-  .mobile-menu-dropdown a {
-    text-decoration: none;
-    color: var(--text);
-    font-size: 1.3rem;
-    font-weight: 600;
-  }
+.mobile-menu-dropdown li {
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-menu-dropdown a {
+  text-decoration: none;
+  /* Use the exact font and color from your global variables */
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+  color: var(--text-muted); 
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  display: block;
+  padding: 10px 0;
+}
+
+/* Hover/Active State */
+.mobile-menu-dropdown a:hover {
+  color: var(--text); /* Goes from gray to bright white */
+  background: rgba(255, 255, 255, 0.03); /* Subtle highlight */
+}
+
+/* Make the hamburger bars match your accent color when open */
+.mobile-toggle.active span {
+  background-color: var(--primary);
+}
 }
 
 /* --- UI Elements & Buttons (Contact Form Fixed) --- */
