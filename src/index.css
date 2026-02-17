@@ -26,13 +26,40 @@ body {
 
 .mono { font-family: 'Space Mono', monospace; }
 
-/* REVISED: Section padding for mobile */
 .section { 
-  padding: 80px 10%; 
+  padding: 100px 10%; 
 }
 
 @media (max-width: 768px) {
-  .section { padding: 60px 5%; }
+  .section { padding: 80px 5%; }
+}
+
+/* --- Navbar Core Styling --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -1px;
 }
 
 .gradient-text {
@@ -42,39 +69,81 @@ body {
 }
 
 .glass {
-  background: rgba(17, 24, 39, 0.75);
+  background: rgba(3, 7, 18, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 
-/* --- Responsive Navigation Helpers --- */
+/* --- Menu Desktop --- */
+.desktop-menu {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
 
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+/* --- Mobile Logic --- */
 .mobile-toggle {
   display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
   color: var(--text);
+  z-index: 1100; /* Above the menu */
+}
+
+.mobile-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1001;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  z-index: 1050;
+  border-left: 1px solid var(--border);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
   .desktop-menu {
-    display: none !important;
+    display: none;
   }
   .mobile-toggle {
     display: block;
   }
 }
 
-/* --- Advanced Input Styling --- */
-
-.label-accent {
-  font-size: 0.7rem;
-  color: var(--primary);
-  margin-bottom: 0.6rem;
-  display: block;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
+/* --- Forms & Inputs --- */
 .glass-input {
   width: 100%;
   padding: 1.1rem;
@@ -82,56 +151,16 @@ body {
   border: 1px solid var(--border) !important;
   border-radius: 12px;
   color: var(--text) !important;
-  font-family: inherit;
-  font-size: 0.95rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
 }
 
 .glass-input:focus {
-  background: rgba(99, 102, 241, 0.05) !important;
   border-color: var(--primary) !important;
   box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
-  transform: translateY(-2px);
 }
 
-/* --- UI Elements --- */
-.btn {
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  color: white;
-  background: var(--primary); /* Added default background */
-  transition: 0.3s;
-}
-
-.btn:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-/* REVISED: Grid system for mobile */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
-
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr; /* Stack fully on small phones */
-  }
-}
-
-.spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
