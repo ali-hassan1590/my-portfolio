@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Close mobile menu when window is resized to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) setIsOpen(false);
@@ -21,9 +20,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="glass navbar">
+    <nav className="navbar glass">
       <div className="nav-container">
-        {/* Logo */}
         <div className="logo">
           ALI<span className="gradient-text">HASSAN</span>
         </div>
@@ -43,16 +41,15 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Mobile Toggle Button */}
+        {/* Updated Toggle with Fallback Text */}
         <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
+          <span className="menu-text">{isOpen ? '' : 'MENU'}</span>
           <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
         </div>
 
-        {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isOpen && (
             <>
-              {/* Dark Backdrop */}
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -61,12 +58,11 @@ const Navbar = () => {
                 className="mobile-backdrop"
               />
               
-              {/* Slide-in Menu */}
               <motion.ul
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
-                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                transition={{ type: 'tween', duration: 0.3 }}
                 className="mobile-menu"
               >
                 {navLinks.map((link) => (
