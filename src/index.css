@@ -26,21 +26,18 @@ body {
 
 .mono { font-family: 'Space Mono', monospace; }
 
-.section { 
-  padding: 100px 10%; 
-}
+.section { padding: 100px 10%; }
 
-/* --- Navbar Core Styling --- */
+/* --- Navbar Core --- */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 70px;
-  z-index: 9999; /* Stays on top of everything */
+  z-index: 9999;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
 }
 
 .nav-container {
@@ -92,9 +89,9 @@ body {
   color: var(--primary);
 }
 
-/* --- PURE CSS HAMBURGER (3 Bars) --- */
+/* --- Hamburger Bars --- */
 .mobile-toggle {
-  display: none; /* Hidden on Desktop */
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   width: 25px;
@@ -102,6 +99,7 @@ body {
   cursor: pointer;
   background: transparent;
   border: none;
+  padding: 0;
   z-index: 10000;
 }
 
@@ -114,72 +112,61 @@ body {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Mobile View Styling --- */
+/* --- Mobile Logic --- */
 @media (max-width: 768px) {
   .section { padding: 60px 5%; }
 
-  .desktop-menu {
-    display: none !important;
-  }
+  .desktop-menu { display: none !important; }
 
-  .mobile-toggle {
-    display: flex !important; /* Force show the 3 bars */
-  }
+  .mobile-toggle { display: flex !important; }
 
-  /* Hamburger to "X" Animation */
-  .mobile-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  /* Transform to X */
+  .mobile-toggle.active span:nth-child(1) { 
+    transform: translateY(8px) rotate(45deg); 
+    background-color: var(--primary);
+  }
   .mobile-toggle.active span:nth-child(2) { opacity: 0; }
-  .mobile-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .mobile-toggle.active span:nth-child(3) { 
+    transform: translateY(-8px) rotate(-45deg); 
+    background-color: var(--primary);
+  }
 
-  /* --- Updated Mobile Dropdown Menu --- */
-.mobile-menu-dropdown {
-  position: absolute;
-  top: 70px; 
-  left: 0;
-  width: 100%;
-  background: var(--surface); /* Matches your dark background */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 3rem 0;
-  list-style: none;
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-  z-index: 1000;
+  .mobile-menu-dropdown {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 0;
+    list-style: none;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+  }
+
+  .mobile-menu-dropdown li { width: 100%; }
+
+  .mobile-menu-dropdown a {
+    text-decoration: none;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: var(--text-muted) !important;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: block;
+    padding: 15px 0;
+    transition: 0.3s;
+    text-align: center;
+  }
+
+  .mobile-menu-dropdown a:hover {
+    color: var(--text) !important;
+    background: rgba(255, 255, 255, 0.03);
+  }
 }
 
-.mobile-menu-dropdown li {
-  width: 100%;
-  text-align: center;
-}
-
-.mobile-menu-dropdown a {
-  text-decoration: none;
-  /* Use the exact font and color from your global variables */
-  font-family: 'Plus Jakarta Sans', sans-serif; 
-  color: var(--text-muted); 
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  display: block;
-  padding: 10px 0;
-}
-
-/* Hover/Active State */
-.mobile-menu-dropdown a:hover {
-  color: var(--text); /* Goes from gray to bright white */
-  background: rgba(255, 255, 255, 0.03); /* Subtle highlight */
-}
-
-/* Make the hamburger bars match your accent color when open */
-.mobile-toggle.active span {
-  background-color: var(--primary);
-}
-}
-
-/* --- UI Elements & Buttons (Contact Form Fixed) --- */
+/* --- Buttons & UI --- */
 .btn {
   padding: 1rem 2rem;
   border-radius: 12px;
@@ -199,17 +186,6 @@ body {
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
-  opacity: 0.9;
-}
-
-/* --- Forms & Inputs --- */
-.label-accent {
-  font-size: 0.7rem;
-  color: var(--primary);
-  margin-bottom: 0.6rem;
-  display: block;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 .glass-input {
@@ -228,25 +204,8 @@ body {
   background: rgba(99, 102, 241, 0.05) !important;
 }
 
-textarea.glass-input {
-  min-height: 140px;
-  resize: none;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2.5rem;
 }
-
-/* Spinner for Loading State */
-.spinner {
-  width: 18px;
-  height: 18px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
