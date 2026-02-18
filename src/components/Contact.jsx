@@ -52,9 +52,9 @@ const Contact = () => {
           <h2 className="contact-title">
             Let’s build the <br /> <span className="gradient-text">Next System.</span>
           </h2>
-          <p className="contact-desc">
+          {/* <p className="contact-desc">
             Currently open for architecture consulting and specialized backend engineering roles.
-          </p>
+          </p> */}
 
           <div className="contact-details-list">
             <ContactDetail icon="fa-envelope" title="Email" detail="alihassan751297@gmail.com" />
