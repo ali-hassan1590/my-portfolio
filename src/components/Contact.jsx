@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   const [status, setStatus] = useState('idle');
@@ -8,11 +8,31 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('sending');
-    // Simulate API transmission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setStatus('success');
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setStatus('idle'), 4000);
+
+    // Make sure you replace this with your actual Formspree ID
+    const FORMSPREE_URL = "https://formspree.io/f/xvzbqabr"; 
+
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 4000);
+      } else {
+        setStatus('error');
+        // Reset to idle after 3 seconds so they can try again
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      // If the URL is missing or network fails, show error
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (e) => {
@@ -23,34 +43,33 @@ const Contact = () => {
     <section className="section" id="contact">
       <div className="grid">
         
-        {/* Contact Info Header */}
+        {/* Contact Info */}
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <h2 style={{ fontSize: '2.8rem', lineHeight: 1.1, marginBottom: '1.5rem' }}>
+          <h2 className="contact-title">
             Let’s build the <br /> <span className="gradient-text">Next System.</span>
           </h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '3rem', maxWidth: '400px', lineHeight: 1.6 }}>
+          <p className="contact-desc">
             Currently open for architecture consulting and specialized backend engineering roles.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <div className="contact-details-list">
             <ContactDetail icon="fa-envelope" title="Email" detail="alihassan751297@gmail.com" />
             <ContactDetail icon="fa-location-dot" title="Location" detail="Lahore, Pakistan" />
           </div>
         </motion.div>
 
-        {/* Dynamic Form - Streamlined */}
+        {/* Form Card */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass"
-          style={{ padding: '2.5rem', borderRadius: '30px' }}
+          className="glass contact-form-card"
         >
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <form onSubmit={handleSubmit} className="contact-form">
             
             <FormGroup label="Name">
               <input 
@@ -61,6 +80,7 @@ const Contact = () => {
                 value={formData.name} 
                 onChange={handleChange} 
                 required 
+                style={{ background: 'rgba(255,255,255,0.03)', color: 'white' }}
               />
             </FormGroup>
 
@@ -73,6 +93,7 @@ const Contact = () => {
                 value={formData.email} 
                 onChange={handleChange} 
                 required 
+                style={{ background: 'rgba(255,255,255,0.03)', color: 'white' }}
               />
             </FormGroup>
 
@@ -84,6 +105,7 @@ const Contact = () => {
                 value={formData.message} 
                 onChange={handleChange} 
                 required 
+                style={{ background: 'rgba(255,255,255,0.03)', color: 'white', minHeight: '120px' }}
               />
             </FormGroup>
 
@@ -93,18 +115,17 @@ const Contact = () => {
               className="btn"
               type="submit"
               disabled={status === 'sending'}
-              style={{ 
-                background: status === 'success' ? 'var(--accent)' : 'var(--primary)', 
-                display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center', 
-                gap: '12px',
-                marginTop: '0.5rem'
+              style={{
+                background: status === 'success' ? 'var(--accent)' : status === 'error' ? '#ef4444' : 'var(--primary)',
+                width: 'fit-content'
               }}
             >
-              {status === 'idle' && <>Send Message <i className="fas fa-paper-plane" style={{fontSize: '0.8rem'}}></i></>}
+              {status === 'idle' && (
+                <>Send Message <i className="fa-solid fa-paper-plane" style={{fontSize: '0.8rem'}}></i></>
+              )}
               {status === 'sending' && <div className="spinner"></div>}
-              {status === 'success' && <>Connection Established</>}
+              {status === 'success' && <>Message Sent!</>}
+              {status === 'error' && <>Try Again</>}
             </motion.button>
 
           </form>
@@ -115,24 +136,23 @@ const Contact = () => {
 };
 
 /* --- Internal Helpers --- */
-
 const FormGroup = ({ label, children }) => (
-  <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-    <label className="mono label-accent">{label}</label>
+  <div className="form-group" style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column' }}>
+    <label className="mono label-accent" style={{ color: 'var(--primary)', fontSize: '0.7rem', marginBottom: '0.5rem' }}>{label}</label>
     {children}
-  </motion.div>
+  </div>
 );
 
 const ContactDetail = ({ icon, title, detail }) => (
-  <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
-    <div className="glass" style={{ width: '50px', height: '50px', borderRadius: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--primary)', fontSize: '1.2rem' }}>
-      <i className={`fas ${icon}`}></i>
+  <div className="detail-item" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.5rem' }}>
+    <div className="glass detail-icon" style={{ width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', color: 'var(--primary)' }}>
+      <i className={`fa-solid ${icon}`}></i>
     </div>
     <div>
-      <p className="mono" style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginBottom: '4px' }}>{title}</p>
-      <p style={{ fontWeight: 600 }}>{detail}</p>
+      <p className="mono detail-label" style={{ fontSize: '0.6rem', color: 'var(--text-muted)' }}>{title}</p>
+      <p className="detail-text" style={{ fontWeight: '600' }}>{detail}</p>
     </div>
   </div>
 );
 
-export default Contact; 
+export default Contact;
