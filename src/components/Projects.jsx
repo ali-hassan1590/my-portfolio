@@ -1,5 +1,3 @@
-
-
 import { motion } from 'framer-motion';
 
 const projects = [
@@ -9,7 +7,6 @@ const projects = [
   { title: "NeuroTranslate API", desc: "Real-time audio-to-speech translation engine using Django and Whisper AI.", tech: ["Python", "NLP", "Redis"] },
   { title: "Flux Orchestrator", desc: "Workflow automation tool reducing deployment latency by 25%.", tech: ["Django", "Docker", "AWS"] },
   { title: "Semantic Search Engine", desc: "Metadata extraction system for enterprise-level distributed data.", tech: ["React", "NLP", "ElasticSearch"] },
-
 ];
 
 const Projects = () => (
@@ -38,7 +35,7 @@ const Projects = () => (
                 color: 'var(--primary)', 
                 background: 'rgba(99,102,241,0.1)', 
                 padding: '4px 10px', 
-                borderRadius: '6px' 
+                borderRadius: '60px' 
               }}>
                 {t}
               </span>
