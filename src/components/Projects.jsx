@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const projects = [
   { title: "Promptly", desc: "A full-stack ChatGPT-like conversational AI web app built with Django and Next.js.", tech: ["Django", "Next.js", "Python", "AI"] },
-  { title: "Flux Orchestrator", desc: "Workflow automation tool reducing deployment latency by 25%.", tech: ["Django", "Docker", "AWS"] },
+  { title: "Whisperfy", desc: "A web app for converting speech to text & audio extractionusing Whisper AI.", tech: ["Django", "HTML", "Whisper"] },
   { title: "SentryDoc AI", desc: "Enterprise-grade AI risk auditor for documents using Gemini SDK.", tech: ["Django", "AI", "Security"] },
   { title: "NeuroTranslate API", desc: "Real-time audio-to-speech translation engine using Django and Whisper AI.", tech: ["Python", "NLP", "Redis"] },
   { title: "Semantic Search Engine", desc: "Metadata extraction system for enterprise-level distributed data.", tech: ["React", "NLP", "ElasticSearch"] },
