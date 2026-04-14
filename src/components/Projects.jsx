@@ -1,7 +1,8 @@
+
 import { motion } from 'framer-motion';
 
 const projects = [
-  { title: "NeuroTranslate API", desc: "Real-time audio-to-speech translation engine using Django and Whisper AI.", tech: ["Python", "NLP", "Redis"] },
+  { title: "Promptly", desc: "A full-stack ChatGPT-like conversational AI web app built with Django and Next.js.", tech: ["Django", "Next.js", "Python", "AI"] },
   { title: "Flux Orchestrator", desc: "Workflow automation tool reducing deployment latency by 25%.", tech: ["Django", "Docker", "AWS"] },
   { title: "Semantic Search Engine", desc: "Metadata extraction system for enterprise-level distributed data.", tech: ["React", "NLP", "ElasticSearch"] },
   { title: "NeuroTranslate API", desc: "Real-time audio-to-speech translation engine using Django and Whisper AI.", tech: ["Python", "NLP", "Redis"] },
@@ -14,36 +15,47 @@ const Projects = () => (
     <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
       Engineered <span className="gradient-text">Solutions</span>
     </h2>
-    
-    <div className="grid">
+
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.2rem' }}>
       {projects.map((proj, i) => (
-        <motion.div 
+        <motion.div
           key={i}
           className="glass project-card"
+          style={{
+            borderRadius: '12px',
+            padding: '1.4rem',
+            boxShadow: '0 8px 40px rgba(0, 0, 0, 0.5)',
+            border: '1px solid rgba(255,255,255,0.07)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.6rem',
+          }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          whileHover={{ 
-            y: -10,
-            transition: { duration: 0.2, ease: "easeOut" } 
+          whileHover={{
+            y: -6,
+            boxShadow: '0 16px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.2)',
+            transition: { duration: 0.2, ease: "easeOut" },
           }}
         >
-          <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '1.2rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
             {proj.tech.map(t => (
-              <span key={t} className="mono" style={{ 
-                fontSize: '0.65rem', 
-                color: 'var(--primary)', 
-                background: 'rgba(99,102,241,0.1)', 
-                padding: '4px 10px', 
-                borderRadius: '60px' 
+              <span key={t} className="mono" style={{
+                fontSize: '0.6rem',
+                color: 'var(--primary)',
+                background: 'rgba(99,102,241,0.1)',
+                padding: '3px 8px',
+                borderRadius: '60px',
               }}>
                 {t}
               </span>
             ))}
           </div>
-          
-          <h3 style={{ marginBottom: '1rem', color: 'var(--text)' }}>{proj.title}</h3>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+
+          <h3 style={{ color: 'var(--text)', fontSize: '1rem' }}>{proj.title}</h3>
+
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', lineHeight: 1.6 }}>
             {proj.desc}
           </p>
         </motion.div>
