@@ -40,3 +40,51 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+/* Container for the projects grid */
+#systems .grid-container {
+  display: grid;
+  /* Forces 3 columns on desktop, drops to 1 on mobile */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* The Project Card - matching your video exactly */
+.project-card {
+  background: rgba(25, 47, 96, 0.4); /* Deep Navy Slate */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left; /* Aligns text like in your SS */
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Important for mobile tap feel */
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent; 
+  touch-action: manipulation;
+}
+
+/* Desktop Hover Shadow (Indigo Glow) */
+@media (hover: hover) {
+  .project-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.2);
+  }
+}
+
+/* Mobile Tap Shadow (Cyan Glow) */
+.project-card:active {
+  border-color: rgba(45, 212, 191, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(45, 212, 191, 0.4);
+}
+
+/* Gradient Text for the Header */
+.gradient-text {
+  background: linear-gradient(90deg, #6366f1, #2dd4bf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
