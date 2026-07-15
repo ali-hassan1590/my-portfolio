@@ -121,7 +121,7 @@ Or connect your GitHub repo directly to [vercel.com](https://vercel.com) for aut
 Software Engineer | Backend Developer | Python · Django · React.js · Next.js · NLP
 
 - Email: [alihassan751297@gmail.com](mailto:alihassan751297@gmail.com)
-- Phone: +923001211729
+- Phone: +923423211052
 - Portfolio: [alihassan-tau.vercel.app](https://alihassan-tau.vercel.app)
 - GitHub: [github.com/ali-hassan1590](https://github.com/ali-hassan1590)
 - LinkedIn: [linkedin.com/in/ali-hassan-672bb5282](https://www.linkedin.com/in/ali-hassan-672bb5282/)
