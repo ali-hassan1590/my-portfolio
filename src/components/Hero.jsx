@@ -7,10 +7,22 @@ const Hero = () => (
     style={{
       minHeight: '100vh',
       display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
+      
+ 
     }}
   >
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.3, duration: 0.7 }}
+      style={{
+  
+ 
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+      }}
+    >
           <motion.p
       className="mono"
       style={{
@@ -87,9 +99,26 @@ const Hero = () => (
         Explore Systems
       </a>
     </motion.div>
-    
+       
       
+    </motion.div>
+      <img
+        src="/ali.png"
+        alt="Portrait"
+        style={{
+
+          width: '100%',
+          maxWidth: '30%',
+          aspectRatio: '1 / 1',
+          objectFit: 'cover',
+
+          
+
+          boxShadow: '0 20px 60px rgba(0,0,0,0.35)',
+        }}
+      />
   </section>
+  
 );
 
 export default Hero;
