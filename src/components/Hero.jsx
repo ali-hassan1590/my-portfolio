@@ -11,19 +11,6 @@ const Hero = () => (
       justifyContent: 'center',
     }}
   >
-    {/* <motion.p
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="mono"
-      style={{
-        color: 'var(--accent)',
-        marginBottom: '1rem',
-      }}
-    >
-      &gt; Backend Engineer & AI Specialist
-    </motion.p> */}
-
           <motion.p
       className="mono"
       style={{
@@ -76,6 +63,8 @@ const Hero = () => (
       Specializing in high-throughput Django backends and NLP-driven pipelines. Currently building the future of automated speech processing.
     </motion.p>
 
+      
+
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -98,6 +87,8 @@ const Hero = () => (
         Explore Systems
       </a>
     </motion.div>
+    
+      
   </section>
 );
 
