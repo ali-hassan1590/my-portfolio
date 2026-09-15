@@ -11,7 +11,7 @@ const Hero = () => (
       justifyContent: 'center',
     }}
   >
-    <motion.p
+    {/* <motion.p
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -22,6 +22,27 @@ const Hero = () => (
       }}
     >
       &gt; Backend Engineer & AI Specialist
+    </motion.p> */}
+
+          <motion.p
+      className="mono"
+      style={{
+        color: 'var(--accent)',
+        marginBottom: '1rem',
+        display: 'flex',
+      }}
+    >
+      <span>&gt;&nbsp;</span>
+      {"Backend Engineer & AI Specialist".split('').map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: i * 0.04 }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
     </motion.p>
 
     <motion.h1
@@ -29,13 +50,14 @@ const Hero = () => (
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2, duration: 0.7 }}
       style={{
-        fontSize: 'clamp(2.5rem, 8vw, 5rem)',
-        fontWeight: 800,
-        lineHeight: 1.1,
+        fontSize: 'clamp(2.0rem, 6vw, 4.5rem)',
+        fontWeight: 400,
+        lineHeight: 1.0,
         marginBottom: '1.5rem',
       }}
     >
-      Engineering Scalable <br />
+      Engineering <br />
+      Scalable <br />
       <span className="gradient-text">Intelligence.</span>
     </motion.h1>
 
@@ -64,7 +86,7 @@ const Hero = () => (
         className="btn-primary"
         style={{
           display: 'inline-block',
-          padding: '1rem 2rem',
+          padding: '1rem 3rem',
           backgroundColor: 'var(--primary)',
           borderRadius: '8px',
           color: 'white',
@@ -80,3 +102,4 @@ const Hero = () => (
 );
 
 export default Hero;
+
