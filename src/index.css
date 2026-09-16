@@ -292,3 +292,58 @@ textarea.glass-input {
 }
 
 
+
+
+
+
+/* --- Hero Section --- */
+.hero-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  height: 100%;
+  width: 100%;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-portrait {
+  width: 100%;
+  max-width: 30%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .hero-text {
+    width: 100%;
+  }
+
+  .hero-portrait {
+    max-width: 55%;
+  }
+
+  .hero-text p.mono {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-portrait {
+    max-width: 70%;
+  }
+}
