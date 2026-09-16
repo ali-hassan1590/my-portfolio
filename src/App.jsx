@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Experience from './components/Experience'; // Use the previous fixed version
+import Skills from './components/Skills';
 import './index.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Hero />
       <Experience />
+      <Skills />
       <Projects />
       <Contact />
       <footer style={{ padding: '4rem 10%', textAlign: 'center', opacity: 0.6 }}>
